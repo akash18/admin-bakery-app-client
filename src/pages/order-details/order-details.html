@@ -1,0 +1,94 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Order Detail</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding class="container" class="app">
+  <ion-card>
+    <ion-card-content padding-vertical>
+      <ion-row>
+        <ion-col col-5>
+          <ion-icon name="ios-basket"></ion-icon>
+        </ion-col>
+        <ion-col col-9>
+          <h3>Here are the order details</h3>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let o of orderDetails" no-padding>
+        <ion-col col-7>
+          <h3> {{ o.quantityRequired + ' x ' + o.product.productName }} </h3>
+        </ion-col>
+        <ion-col col-5>
+          <h3> Rs. {{ o.product.productPrice * o.quantityRequired }} </h3>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-7>
+        <p>Subtotal</p>
+        </ion-col>
+        <ion-col col-5>
+          <p> Rs. {{this.total}} </p>
+        </ion-col>
+      </ion-row>
+      </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content padding-vertical>
+      <ion-row>
+        <ion-col col-5>
+          <ion-icon name="person"></ion-icon>
+        </ion-col>
+        <ion-col col-9>
+          <h3>Here are the user details</h3>
+        </ion-col>
+      </ion-row>
+      <ion-row no-padding>
+        <ion-col col-3>
+            <h3>Name :</h3>
+        </ion-col>
+        <ion-col col-7>
+          <h3> {{ this.order.user.userDetails.fullName }} </h3>
+        </ion-col>
+      </ion-row>
+    
+      <ion-row no-padding>
+        <ion-col col-3>
+            <h3>Email :</h3>
+        </ion-col>
+        <ion-col col-7>
+          <h3> {{ this.order.user.email }} </h3>
+        </ion-col>
+      </ion-row>
+
+        <ion-row no-padding>
+        <ion-col col-3>
+            <h3>Mobile No :</h3>
+        </ion-col>
+        <ion-col col-5>
+          <h3> {{ this.order.user.userDetails.phoneNumber }} </h3>
+        </ion-col>
+      </ion-row>
+
+        <ion-row no-padding>
+        <ion-col col-3>
+            <h3>Address :</h3>
+        </ion-col>
+        <ion-col col-7>
+          <h3> {{ this.order.user.userDetails.addr1 }} </h3>
+          <h3> {{ this.order.user.userDetails.addr2 }} </h3>
+          <h3> {{ this.order.user.userDetails.city + ', ' + this.order.user.userDetails.postalCode }} </h3>
+        </ion-col>
+      </ion-row>
+
+      </ion-card-content>
+  </ion-card>
+
+  <button ion-button [disabled]="isDelivered()" (click)="updateOrderStatus('Delivered')">Delivered</button>
+
+
+</ion-content>

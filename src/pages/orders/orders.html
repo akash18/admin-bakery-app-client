@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Order list
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list *ngIf="this.data.orders">
+    <ion-item *ngFor="let o of this.data.orders" (click)="goToDetails(o)">
+      <ion-avatar item-start>
+        <img src="{{this.data.apiEndpoint}}images/cake.jpg">
+      </ion-avatar>
+      <h2>{{o.user.userDetails.fullName }}</h2>
+      <h3> {{o.status | uppercase }} </h3>
+      <h3> {{o.created | date:'dd/MM/yyyy h:mma' }} </h3>
+      <ion-icon name="ios-arrow-forward-outline" small item-end></ion-icon>
+    </ion-item>
+  </ion-list>
+
+   <p *ngIf="(this.data.orders==null || this.data.orders.length==0)" padding> There are no orders yet. </p>
+</ion-content>

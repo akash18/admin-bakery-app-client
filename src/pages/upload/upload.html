@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Upload/Edit a product
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-row *ngIf="!this.isEdit">
+      <ion-col col-6>
+        <button ion-button color="camera" type="button" full round large (click)="takePhoto()">
+          <ion-icon name="camera"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-6>
+        <button ion-button color="gallery" type="button" full round large (click)="selectPhoto()">
+          <ion-icon name="image"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  <ion-item color="danger" *ngIf="error">
+    <strong>{{error}}</strong>
+  </ion-item>
+  <ion-item *ngIf="!this.isEdit && this.product">
+    <img class="img-responsive" [src]="this.product.productImageClientUri"/>
+  </ion-item>
+  <ion-item *ngIf="this.isEdit">
+    <img class="img-responsive" src="{{this.provider.apiEndpoint}}images/{{this.product.productImage.imagePath}}">
+  </ion-item>
+
+<!--*ngIf="itemPhoto"-->
+  <form [formGroup]="this.provider.saveForm" (ngSubmit)="saveProduct()" >
+    <ion-item>
+      <ion-label floating>Product Name</ion-label>
+     <ion-input type="text" formControlName="productName" ></ion-input>
+    </ion-item>
+    
+    <div *ngIf="formErrors.productName">
+      <div *ngFor="let errors of formErrors.productName" >
+        <p class="alert">{{ errors }}<p>
+      </div>
+    </div>
+
+    <ion-item>
+      <ion-label floating>Product Price</ion-label>
+     <ion-input type="text" formControlName="productPrice" ></ion-input>
+    </ion-item>
+    
+    <div *ngIf="formErrors.productPrice">
+      <div *ngFor="let errors of formErrors.productPrice" >
+        <p class="alert">{{ errors }}<p>
+      </div>
+    </div>
+
+    <ion-item>
+      <ion-label floating>Product Type</ion-label>
+     <ion-input type="text" formControlName="productType" ></ion-input>
+    </ion-item>
+    
+    <div *ngIf="formErrors.productType">
+      <div *ngFor="let errors of formErrors.productType" >
+        <p class="alert">{{ errors }}<p>
+      </div>
+    </div>
+
+    <ion-item>
+      <ion-label floating>Product Description</ion-label>
+     <ion-input type="text" formControlName="productDescription" ></ion-input>
+    </ion-item>
+    
+    <div *ngIf="formErrors.productDescription">
+      <div *ngFor="let errors of formErrors.productDescription" >
+        <p class="alert">{{ errors }}<p>
+      </div>
+    </div>
+
+    <ion-item>
+      <ion-label floating>Product Quantity</ion-label>
+     <ion-input type="text" formControlName="productQuantity" ></ion-input>
+    </ion-item>
+    
+    <div *ngIf="formErrors.productQuantity">
+      <div *ngFor="let errors of formErrors.productQuantity" >
+        <p class="alert">{{ errors }}<p>
+      </div>
+    </div>
+   
+    <button ion-button color="danger" type="submit" [disabled]="!this.provider.saveForm.valid" block>Add/Edit</button>
+  </form>
+</ion-content>

@@ -1,0 +1,5 @@
+<ion-tabs  tabsPlacement="top" tabsHighlight="true">
+  <ion-tab [root]="tab1Root" (ionSelect)="clearForm()" tabTitle="Upload" tabIcon="cloud-upload"></ion-tab>
+  <ion-tab [root]="tab2Root" (ionSelect)="getOrders()" tabTitle="Orders" tabIcon="ios-list"></ion-tab>
+  <ion-tab [root]="tab3Root" (ionSelect)="getProducts()" tabTitle="Products" tabIcon="ios-list"></ion-tab>
+</ion-tabs>

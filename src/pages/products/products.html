@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Product list
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list *ngIf="this.data.products">
+    <ion-item *ngFor="let p of this.data.products"> 
+        <ion-avatar item-start>
+             <img src="{{this.data.apiEndpoint}}images/{{p.productImage.imagePath}}">
+        </ion-avatar>
+        <div class="label-item">{{p.productName }}</div>
+        <button ion-button (click)="editProduct(p)">Edit</button>
+        <button ion-button [disabled]="isActive(p)" (click)="updateProductStatus(p,true)">Activate</button>
+        <button ion-button [disabled]="!isActive(p)" (click)="updateProductStatus(p,false)">Inactivate</button>
+    </ion-item>
+  </ion-list>
+
+  <p *ngIf="(this.data.products==null || this.data.products.length==0)" padding> There are no products added yet. </p>
+</ion-content>

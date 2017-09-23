@@ -11,8 +11,8 @@ log.txt
 *.sublime-workspace
 .vscode/
 npm-debug.log*
-environment-variables/development.ts
-environment-variables/production.ts
+src/app/environment-variables/development.ts
+src/app/environment-variables/production.ts
 
 .idea/
 .sass-cache/
